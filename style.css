@@ -1,0 +1,433 @@
+* {
+    box-sizing: border-box;
+    
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    background-color: #08090f;
+}
+
+#scene {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background:radial-gradient(circle at 20%, 50%, rgba(255, 190, 100, 0.05), transparent 30%), linear-gradient(110deg, #17120f, #090a10);
+    color: white;
+    transition: background 0.8s ease;
+}
+#scene.light-on{
+    background: radial-gradient(circle at 20%, 50%, rgba(255, 185, 90, 0.35) transparent 30%), radial-gradient(circle at 50%, 50%, rgba(255, 170, 70, 0.08), transparent 40%), linear-gradient(110deg, #2b211a, #090a10);
+}
+
+#loveText {
+    position: absolute;
+
+    top: 25%;
+    right: 10%;
+
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 40px;
+
+    font-size: clamp(80px, 12vw, 180px);
+
+    font-weight: 800;
+    letter-spacing: -10px;
+
+    transition: all 0.7s ease;
+}
+
+#loveText span {
+    color: #ff59fe;
+
+    display: inline-block;
+
+    filter: drop-shadow(0 0 20px rgba(255, 80, 150, 0.6));
+    animation: heartBeat 1.8s infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(1.15);
+    }
+    20% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.1);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+#subtitle {
+    position: absolute;
+
+    top: 43%;
+    right: 10%;
+
+    margin: 0;
+
+    color:#777985;
+
+    font-size: 20px;
+
+    letter-spacing: -1px;
+
+    text-transform: uppercase;
+
+    transition: 0.5s ease;
+}
+
+.lamp-container {
+    position: absolute;
+
+    top: 10%;
+    left: 15%;
+
+    width: 220px;
+    height: 600px;
+}
+
+.lamp {
+    position: absolute;
+
+    left: 35px;
+    top: 70px;
+
+    width: 120px;
+    height: 190px;
+}
+
+.lamp-top {
+    position: absolute;
+
+    top: 0;
+    left: 35px;
+
+    width: 50px;
+    height: 30px;
+
+    background: #30313b;
+    border-radius: 7px 7px 3px 3px;
+}
+
+.bulb {
+    position: absolute;
+
+    top: 25px;
+    left: 25px;
+
+    width: 70px;
+    height: 105px;
+
+    background: #35332f;
+    border-radius: 50% 50% 45% 45%;
+
+    border:3px solid #25262c;
+
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.bulb-highlight {
+    position: absolute;
+
+    top: 135px;
+    left: 45px;
+
+    width: 30px;
+    height: 12px;
+
+    background: #30313b;
+    border-radius: 5px;
+}
+
+#scene.light-on .bulb {
+    background: radial-gradient(circle at 40% 35%, #fff9df 0%, #ffd88d 35%, #ffb653 70%, #e18c35 100%);
+    box-shadow: 0 0 20px rgba(255, 200, 110, 0.9), 0 0 60px rgba(255, 175, 80, 0.7), 0 0 120px rgba(255, 165, 70, 0.35);
+}
+
+.cord {
+    position: absolute;
+
+    top: 0;
+    left: 125px;
+
+    width: 45px;
+    height: 370px;
+    
+    cursor: pointer;
+
+    user-select: none;
+}
+
+.cord-line {
+    position: absolute;
+
+    top: 0;
+    left: 20px;
+
+    width: 3px;
+    height: 315px;
+
+    background: #e2dfdc;
+    border-radius: 10px;
+
+    transform-origin: top;
+}
+
+.cord-handle {
+    position: absolute;
+
+    top: 305px;
+    left: 10px;
+
+    width: 23px;
+    height: 35px;
+
+    background: linear-gradient(135deg, #ffd58d, #e99d47) ;
+    border-radius: 12px 12px 9px 9px;
+    box-shadow: 0 3px 15px rgba(255, 183, 91, 0.3);
+}
+
+.cord-pulling .cord-line {
+    animation: pullCord 0.55s ease;  
+}
+
+.cord.pulling .cord-handle {
+    animation: pullHandle 0.55s ease;  
+}
+
+@keyframes pullCord {
+    0% {
+        transform: scale(1);
+    }
+    35% {
+        transform: scale(0.85);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pullHandle {
+    0% {
+        transform: translateY(0);
+    }
+    35% {
+        transform: translateY(35px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+#hint {
+    position: absolute;
+
+    top: 375px;
+    left: 0;
+    width: 200px;
+
+    text-align: center;
+
+    color: #777985;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+footer {
+    position: absolute;
+
+    bottom: 30px;
+    left: 50px;
+
+   transform: translateY(-50%);
+
+   letter-spacing: 4px;
+    
+
+    color: #6f7079;
+
+    font-size: 9px;
+}
+
+#particles {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #ff5f9e;
+
+    box-shadow: 0 0 12px rgba(255, 95, 158, 0.8);
+
+    animation: particleBurst 0.9s ease-out forwards;
+}
+
+@keyframes particleBurst {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0.1);
+        opacity: 0;
+    }
+}
+
+#loveText span {
+
+transition:
+
+transform 0.7s ease,
+opacity 0.7s ease,
+width 0.7s ease;
+
+}
+
+/* =================================
+   LOVE MESSAGE STATES
+   ================================= */
+
+/* The I and U are normally visible */
+#loveText .letter {
+    display: inline-block;
+
+    opacity: 1;
+
+    transform: scale(1);
+
+    width: auto;
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        width 0.5s ease;
+}
+
+
+/* =================================
+   BULB OFF
+   Only the heart is visible
+   ================================= */
+
+#loveText.heart-only .letter-i,
+#loveText.heart-only .letter-u {
+
+    opacity: 0;
+
+    transform: scale(0);
+
+    width: 0;
+
+    overflow: hidden;
+}
+
+
+/* =================================
+   HEART
+   ================================= */
+
+#loveText .heart {
+
+    display: inline-block;
+
+    color: #ff5f9e;
+
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
+
+    filter:
+        drop-shadow(
+            0 0 20px
+            rgba(255, 80, 150, 0.6)
+        );
+}
+
+
+/* Bigger heart when bulb is OFF */
+
+#loveText.heart-only .heart {
+
+    transform: scale(1.5);
+
+}
+
+
+/* Normal I ❤️ U state */
+
+#scene.light-on #loveText .heart {
+
+    transform: scale(1);
+
+}
+
+@media (max-width: 768px) {
+    #loveText {
+        top: 15%;
+
+        left: 0;
+        right: 0;
+        
+        font-size: 75px;
+
+        gap: 25px;
+    }
+
+    #subtitle {
+        top: 32%;
+
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+
+    .lamp-container {
+        top: 43%;
+        left: 50%;
+         transform: translateX(-50%);
+    }
+
+    footer {
+        bottom: 20px;
+
+        font-size: 7px;
+    }
+}
